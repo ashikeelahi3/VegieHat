@@ -4,8 +4,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { useAuth } from "@clerk/clerk-expo";
 import LoginScreen from "../screens/AuthScreens/LoginScreen";
 import RegisterScreen from "../screens/AuthScreens/RegisterScreen";
-import ProfileScreen from "../screens/ProfileScreen";
-import HomeScreen from "../screens/HomeScreen";
+import BottomTabNavigator from "./BottomTabNavigator";
 
 const Stack = createNativeStackNavigator();
 
@@ -22,8 +21,7 @@ export default function RootNavigator() {
           </>
         ) : (
           <>
-            <Stack.Screen name="Home" component={HomeScreen} />
-            <Stack.Screen name="Profile" component={ProfileScreen} />
+            <Stack.Screen name="Main" component={BottomTabNavigator} options={{ headerShown: false }} />
           </>
         )}
       </Stack.Navigator>
