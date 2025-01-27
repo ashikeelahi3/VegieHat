@@ -1,9 +1,11 @@
 import React, { useState } from "react";
-import { View, Text, TextInput, Button, Alert } from "react-native";
+import { View, Text, TextInput, Button, Alert, TouchableOpacity } from "react-native";
 import { useSignUp } from "@clerk/clerk-expo";
+import { useNavigation } from "@react-navigation/native";
 
 export default function RegisterScreen() {
-  const { signUp, setActive } = useSignUp();
+  const { signUp } = useSignUp();
+  const navigation = useNavigation();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -15,28 +17,32 @@ export default function RegisterScreen() {
       });
       await signUpResult.prepareEmailAddressVerification();
       Alert.alert("Verification Email Sent", "Please check your inbox.");
-    } catch (error) {
-      Alert.alert("Registration Failed", error.errors[0]?.message || "An error occurred");
+      navigation.navigate("Login"); // Redirect to login screen
+    } catch (err: any) {
+      Alert.alert("Registration Failed", err.errors[0]?.message || "Something went wrong");
     }
   };
 
   return (
-    <View className="flex-1 items-center justify-center p-4">
-      <Text className="text-xl font-bold mb-4">Register</Text>
+    <View className="flex-1 items-center justify-center bg-gray-100 p-6">
+      <Text className="text-2xl font-bold mb-6 text-gray-800">Register</Text>
       <TextInput
         placeholder="Email"
         value={email}
         onChangeText={setEmail}
-        className="border px-4 py-2 rounded mb-4 w-full"
+        className="w-full border border-gray-300 rounded-md p-3 mb-4"
       />
       <TextInput
         placeholder="Password"
         value={password}
         secureTextEntry
         onChangeText={setPassword}
-        className="border px-4 py-2 rounded mb-4 w-full"
+        className="w-full border border-gray-300 rounded-md p-3 mb-6"
       />
       <Button title="Register" onPress={handleRegister} />
+      <TouchableOpacity onPress={() => navigation.navigate("Login")} className="mt-4">
+        <Text className="text-blue-500">Already have an account? Login</Text>
+      </TouchableOpacity>
     </View>
   );
 }
