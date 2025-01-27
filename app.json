@@ -16,7 +16,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/logo.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.ashikeelahi330.VegieHat"
     },
     "web": {
       "bundler": "metro",
@@ -38,6 +39,14 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "925ca36e-cebe-43d7-bb09-8d62f241a69e"
+      }
     }
   }
 }
