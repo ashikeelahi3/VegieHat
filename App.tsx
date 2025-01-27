@@ -1,6 +1,6 @@
 import React from "react";
-import RootNavigator from "./navigation/RootNavigator";
 import { AuthProvider } from "./context/AuthProvider";
+import RootNavigator from "./navigation/RootNavigator";
 
 export default function App() {
   return (
