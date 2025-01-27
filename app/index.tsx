@@ -1,15 +1,15 @@
-import { Text, View } from "react-native";
+import React from "react";
+import { ClerkProvider } from "@clerk/clerk-expo";
+import { tokenCache } from "../cache"; 
+import RootNavigator from "../navigation/RootNavigator";
 
-export default function Index() {
+export default function App() {
   return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-      }}
+    <ClerkProvider
+      publishableKey={process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY} // Replace with your Clerk Frontend API key
+      tokenCache={tokenCache}
     >
-      <Text className="text-red-700">Edit app/index.tsx to edit this screen.</Text>
-    </View>
+      <RootNavigator />
+    </ClerkProvider>
   );
 }
